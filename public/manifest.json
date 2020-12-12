@@ -8,12 +8,12 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "/",
+  "start_url": "/#standalone",
   "background_color": "#ffffff",
   "display": "standalone",
   "theme_color": "#ffffff",
   "share_target": {
-    "action": "/",
+    "action": "/?share=1#standalone",
     "params": {
       "title": "title",
       "text": "text",

@@ -1,21 +1,24 @@
 <script>
-  let name = 'there';
-  let status = '';
+	import Emulator from './Emulator.svelte';
 
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-      .register('/service-worker.js')
-      .then(function (reg) {
-        status = 'Service worker registered.';
-      })
-      .catch(function (err) {
-        status = 'Service worker not registered. This happened: ' + err.message;
-      });
-  }
-
-  let queryParams = new URLSearchParams(location.search);
+	export let is_pwa;
+	export let share_mode;
+	export let emulation_mode;
+	export let dev_mode;
+	export let query_params;
 </script>
 
-<h1>Hello {name}!</h1>
-<div>Query params: ${queryParams}</div>
-<div>Status: {status}</div>
+{#if emulation_mode}
+	<Emulator />
+{:else}
+	<div>PWA: {is_pwa}</div>
+	<div>Share Mode: {share_mode}</div>
+	<div>
+		Query Params:
+		<pre>{JSON.stringify(query_params, null, 2)}</pre>
+	</div>
+
+	{#if dev_mode}
+		{#if !share_mode}<a href="?emulate=1">Emulate PWA</a>{/if}
+	{/if}
+{/if}
