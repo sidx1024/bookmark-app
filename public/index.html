@@ -13,11 +13,9 @@
 
 		<script>
 			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker
-					.register('/service-worker.js')
-					.catch(function (err) {
-						alert('Service worker not registered. Error: ' + err.message);
-					});
+				navigator.serviceWorker.register('/service-worker.js').catch(function (err) {
+					alert('Service worker not registered. Error: ' + err.message);
+				});
 			}
 		</script>
 

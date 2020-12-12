@@ -1,5 +1,5 @@
 <script>
-	import { obj2query } from './utils.js';
+	import { obj2query, query2obj } from './utils.js';
 
 	let origin;
 	let hash;
@@ -7,18 +7,25 @@
 
 	$: iframe_url = origin + '?' + search + '#' + hash;
 
+	function update_search(updated_search) {
+		search = obj2query(Object.assign(query2obj(search), updated_search));
+	}
+
 	function handle_share_click() {
-		const content = {
+		update_search({
 			share: 1,
 			text: 'Some Random Text',
-		};
-		search = obj2query(content);
+		});
 	}
 
 	function handle_reset_click() {
 		origin = location.origin;
-		hash = 'standalone';
+		hash = '';
 		search = '';
+	}
+
+	function handle_force_pwa_click() {
+		update_search({ override_is_pwa: 1 });
 	}
 
 	handle_reset_click();
@@ -29,6 +36,7 @@
 <div>
 	<button on:click={handle_reset_click}>Reset</button>
 	<button on:click={handle_share_click}>Share</button>
+	<button on:click={handle_force_pwa_click}>Force PWA</button>
 </div>
 
 <style>
