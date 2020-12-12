@@ -17,6 +17,8 @@
 		Query Params:
 		<pre>{JSON.stringify(query_params, null, 2)}</pre>
 	</div>
+	<div>Location Href: {location.href}</div>
+	<div>Share Mode: {share_mode}</div>
 
 	{#if dev_mode}
 		{#if !share_mode}<a href="?emulate=1">Emulate PWA</a>{/if}
