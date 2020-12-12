@@ -2,7 +2,7 @@ self.addEventListener('fetch', function () {});
 
 // Files to cache
 var cacheName = '100';
-var contentToCache = ['/global.css', '/build/bundle.css', '/build/bundle.js', '/favicon.png'];
+var contentToCache = ['/', '/index.html', '/global.css', '/build/bundle.css', '/build/bundle.js', '/favicon.png'];
 
 // Installing Service Worker
 self.addEventListener('install', function (e) {
