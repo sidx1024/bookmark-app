@@ -5,7 +5,10 @@ import App from './App.svelte';
 
 const dev_mode = location.hostname === 'localhost';
 const query_params = query2obj(location.search.slice(1));
-const is_pwa = document.referrer.startsWith('android-app://') || query_params.override_is_pwa;
+const is_pwa =
+	['fullscreen', 'standalone', 'minimal-ui'].some(
+		(displayMode) => window.matchMedia('(display-mode: ' + displayMode + ')').matches
+	) || query_params.override_is_pwa;
 const share_mode = ['text', 'title', 'url'].some((key) => query_params.hasOwnProperty(key));
 const emulation_mode = dev_mode && query_params.emulate == 1;
 
